@@ -1,3 +1,4 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -10,16 +11,36 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script type="text/babel">
       const ListaAnimali = () => {
-        const animals = ["cane", "gatto", "topo"];
+        const { useState } = React;
+        const [animals, setAnimals] = useState([]);
+        const animalsChoices = [
+          "Cane",
+          "Gatto",
+          "Pappagallo",
+          "Cavallo",
+          "Panda",
+        ];
+        const randomIndex = Math.floor(
+          Math.random() * (animalsChoices.length + 1)
+        );
         return (
-          <details>
-            <summary>Animali</summary>
-            <ul>
-              {animals.map((animali, index) => (
-                <li key={index}>{animali}</li>
-              ))}
-            </ul>
-          </details>
+          <>
+            <button
+              onClick={() =>
+                setAnimals([...animals, animalsChoices[randomIndex]])
+              }
+            >
+              Aggiungi Animale
+            </button>
+            <details>
+              <summary>Animali</summary>
+              <ul>
+                {animals.map((animali, index) => (
+                  <li key={index}>{animali}</li>
+                ))}
+              </ul>
+            </details>
+          </>
         );
       };
     </script>
